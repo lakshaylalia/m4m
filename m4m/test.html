@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form id="partyForm">
+        <label for="party">Enter a date and time for your party booking:</label>
+        <input id="party" type="datetime-local" name="partydate" min="2024-06-01T08:30" max="2024-06-30T16:30" required />
+        <span class="error" aria-live="polite"></span>
+        <input type="submit" value="Sumbit" />
+      </form>
+      <style>
+      input[type="datetime-local"] {
+        display: block;
+        margin-bottom: 10px;
+      }
+      
+      .error {
+        color: red;
+        display: none;
+      }
+    </style>
+    <script>
+        const form = document.getElementById('partyForm');
+const input = document.getElementById('party');
+const error = document.querySelector('.error');
+
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+
+  const date = new Date(input.value);
+  const minDate = new Date(input.min);
+  const maxDate = new Date(input.max);
+
+  if (isNaN(date.getTime()) || date < minDate || date > maxDate) {
+    error.textContent = 'Please enter a valid date and time.';
+    error.style.display = 'block';
+  } else {
+    error.textContent = '';
+    error.style.display = 'none';
+
+    // Perform some action here
+    console.log(`Party booked on ${date}`);
+  }
+});
+
+input.addEventListener('input', () => {
+  error.textContent = '';
+  error.style.display = 'none';
+});
+    </script>
+</body>
+</html>

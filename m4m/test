@@ -1,0 +1,9 @@
+let pass=document.getElementById("pass");
+let icon=document.getElementBy Id("icon");
+icon.addEventListner("click",()=>{
+    pass.type=pass.type="password" ? "text":"password";
+    icon.className=
+    icon.className="fa-regular fa-eye"
+    ? "fa-regular fa-eye-slash"
+    : "fa-regular fa-eye";
+});
